@@ -1,0 +1,20 @@
+@use './fonts';
+
+* {
+  font-family: 'Nunito Sans';
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
+.white {
+  color: #fdfdfd;
+}
+
+body {
+  margin:0;
+}
