@@ -12,6 +12,7 @@
 }
 
 .header_container {
+  position: relative;
   width: 1180px;
   height: 60px;
   display: flex;
@@ -59,6 +60,7 @@
   align-items: flex-end;
   padding-bottom: 82px;
   box-sizing: border-box;
+  position: relative;
 }
 
 .titleContainer {
@@ -138,12 +140,270 @@ color-scheme: dark;
   background-size: 14.51px 7.64px;
 }
 
-.findProgramme {
+.findProgrameButton, .programeButton, .costProgramsButton {
   width: 213px;
   height: 52px;
   background-color:rgba(26, 62, 62, 1);
   border: none;
   border-radius: 4px;
   font-size: 16px;
+  font-weight: 700;
+}
+
+.aboutOurHike_conatainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1180px;
+  height: 526px;
+  margin-inline: auto;
+  margin-top: 100px;
+}
+
+.aboutOurHike_photos {
+  flex: 0 0 480px;
+  position: relative;
+  width: 480px;
+  height: 526px;
+}
+
+.photoBack , .photoFront {
+  position: absolute;
+  width: 350px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.photoBack {
+  top: 0;
+  left: 0;
+}
+.photoFront {
+  right: 0;
+  bottom: 0;
+}
+
+.playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  border: 0;
+  border-radius: 100%;
+  background-color: rgba(255, 255, 255, 0.75);
+  font-size: 22px;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+
+.aboutOurHike_title {
+  width: 580px;
+  height: 398px;
+  flex: 0 0 580px;
+}
+
+.bestPrograms {
+  background-color: rgba(243, 245, 244, 1);
+  width: 100%;
+  height: 771px;
+  margin-top: 100px;
+}
+
+.bestPrograms_container {
+  display: flex;
+  margin-inline: auto;
+  width: 1180px;
+  justify-content: space-between;
+  align-items: flex-start
+}
+
+.programs-content {
+  width: 580px;
+  height: 591px;
+  box-sizing: border-box;
+
+
+}
+.groupPhotos {
+  margin-top: 130px;
+  width: 510px;
+  height: 510px;
+}
+
+.list {
+  margin-top: 40px;
+}
+
+.offerItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.offerItem:hover {
+  transform: scale(1.03);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.offerItem h3 {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+.offerItem p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.offerIcon {
+  display: flex;
+  flex: 0 0 50px;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.offerIcon img {
+  width: 50px;
+  height: 50px;
+}
+
+.offerItem > div {
+  transform: translateY(-8px);
+}
+
+.ourOffer {
+  margin: 80px 0 8px;
+}
+
+.bestProgramsTitle {
+  margin: 0 0 40px;
+}
+
+.descriptionPrograms {
+  margin-top: 0;
+}
+
+.findProgrameButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.loading-page {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  z-index: 9999;
+}
+
+.loading {
+  width: 48px;
+  height: 48px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.header_container > span,
+.clicker {
+  position: absolute;
+  top: calc(100% - 2px);
+  right: calc(158px + 16px);
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  color: #fdfdfd;
+  font-size: 16px;
+  line-height: 28px;
+  white-space: nowrap;
+}
+
+.clicker button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 0 6px;
+  background: none;
+  border: none;
+  color: #fdfdfd;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.clicker span {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.clicker button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.header > button {
+  position: absolute;
+  bottom: 4px;
+  right: calc((100% - 1180px) / 2);
+  width: 158px;
+  height: 28px;
+  border: none;
+  border-radius: 4px;
+  background-color: #fdfdfd;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.liveInput {
+  position: absolute;
+  left: calc((100% - 1180px) / 2);
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  color: #fdfdfd;
+}
+
+.liveInput input {
+  width: 250px;
+  height: 50px;
+  box-sizing: border-box;
+  padding: 0 40px 0 16px;
+  background-color: transparent;
+  background-image: url(/images/right_arrow.svg);
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 10px 14px;
+  border: 1px solid #fdfdfd;
+  border-radius: 8px;
+  color: #fdfdfd;
+  font-size: 14px;
+  outline: none;
+}
+
+.liveInput input::placeholder {
+  color: #fdfdfd;
   font-weight: 700;
 }
