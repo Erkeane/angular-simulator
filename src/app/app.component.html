@@ -1,3 +1,8 @@
+@if (isLoading) {
+  <div class="loading-page">
+    <img class="loading" src="/images/loading.svg" alt="Загрузка">
+  </div>
+} @else {
 <header class="header">
 <div class = "header_container">
   <div class="headerLogo">
@@ -15,8 +20,17 @@
   <a>Контакты</a>
 </nav>
 <button class="headerButton fs-16">Консультация</button>
+@if (showTimer) {
+  <span class="white">{{ currentDate.toLocaleString() }}</span>
+} @else {
+  <div class="clicker">
+    <button type="button" (click)="addCount()">+</button>
+    <span class="white">{{ clickCount }}</span>
+    <button type="button" (click)="removeCount()" [disabled]="clickCount === 0">−</button>
+  </div>
+}
 </div>
-
+<button type="button" (click)="toggleDisplay()"> {{ showTimer ? 'Показать кликер' : 'Показать дату' }}</button>
 </header>
 <section class="background">
 <div class="titleContainer">
@@ -28,30 +42,92 @@
 <div class="formsContainer">
   <form>
     <div class="bottomForm white">
-    <select>
-      <option>Локация для тура</option>
-      <option>Найт-Сити</option>
-      <option>Пустошь</option>
+    <select [(ngModel)]="selectedLocation" name="location">
+      <option value="" disabled>Локация для тура</option>
+      <option value="night-city">Найт-Сити</option>
+      <option value="wasteland">Пустошь</option>
     </select>
     <p>выберите из списка</p>
     </div>
       <div class="bottomForm white">
         <div class="dateForm">
-          <span>Дата похода</span>
+          <span>{{ selectedDate || 'Дата похода' }}</span>
           <img src="/images/date_pic.png" alt="">
-        <input type="date">
+        <input type="date" [(ngModel)]="selectedDate" name="date" >
       </div>
       <p>укажите дату</p>
     </div>
     <div class="bottomForm white">
-    <select>
-      <option>Участники</option>
+    <select [(ngModel)]="selectedParticipants" name="participants">
+      <option value="" disabled>Участники</option>
+      <option value="silverhand">Джони Сильверхэнд</option>
+      <option value="panam">Панам Палмер</option>
     </select>
     <p>выберите из списка</p>
     </div>
-    <button type="submit" class="findProgramme white">Найти программу</button>
+    <button type="button" [disabled]="!selectedLocation || !selectedDate || !selectedParticipants" class="findProgrameButton white">Найти программу</button>
   </form>
 </div>
 </div>
-
+  <div class="liveInput white">
+  <input type="text" [(ngModel)]="liveText" placeholder="Введите текст">
+  <span>{{ liveText }}</span>
+</div>
 </section>
+
+<section class="aboutOurHike">
+<div class="aboutOurHike_conatainer">
+  <div class="aboutOurHike_photos">
+    <img class="photoBack" src="/images/back_photo.png" alt="Горы в облаках">
+    <div class="photoFront">
+      <img src="/images/front_photo.png" alt="Домик в горах">
+      <button class="playButton" type="button" aria-label="Воспроизвести видео"> <img src="/images/triangle.svg" alt="кнопка треугольник"></button>
+    </div>
+    </div>
+    <div class="aboutOurHike_title">
+    <p class="caption yellow fs-24">О нашем походе</p>
+    <h2 class="hike_secondTitle fs-32">Исследуйте все горные массивы мира вместе с нами</h2>
+    <p class="description fs-18">
+        Его корни уходят в один фрагмент классической латыни 45 года н.э.,
+        то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, 
+        взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
+    <button type="button" class="programeButton white">Программа тура</button>
+  </div>
+  </div>
+</section>
+
+<section class="bestPrograms">
+  <div class="bestPrograms_container">
+    <div class="programs-content">
+      <p class="ourOffer yellow fs-24">Наше предложение</p>
+      <h2 class="bestProgramsTitle fs-32">Лучшие программы для тебя</h2>
+      <p class="descriptionPrograms fs-18 ">
+        Его корни уходят в один фрагмент классической латыни 45 года н.э.,
+        то есть более двух тысячелетий назад. Ричард МакКлинток, профессор
+        латыни из колледжа.</p>
+
+      <div class="list">
+        @for (offer of offers; track offer.title) {
+        <div class="offerItem">
+        <span class="offerIcon">
+        <img [src]="offer.image" [alt]="offer.title">
+    </span>
+
+    <div>
+      <h3>{{ offer.title }}</h3>
+      <p>{{ offer.description }}</p>
+    </div>
+  </div>
+}
+        
+      </div>
+
+      <button type="button" class="costProgramsButton white">Стоимость программ</button>
+    </div>
+
+    <div class="groupPhotos">
+      <img src="/images/group_photo.png" alt="Групповое фото" />
+    </div>
+  </div>
+</section>
+}
